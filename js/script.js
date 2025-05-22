@@ -21,7 +21,6 @@ AFRAME.registerComponent('set-sky-on-click', {
                 textPlane.setAttribute('src', textPic);
 
                 // Step 4: Fade back to clear
-                fadePlane.emit('fadeout');
             });
             setTimeout(function () {
                 fadePlane.emit('fadeout')
