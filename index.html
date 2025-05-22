@@ -16,7 +16,7 @@
     <script id="link" type="text/html">
         <a-entity class="link"
           geometry="primitive: plane; height: 1; width: 1"
-          material="shader: flat; src: ${thumb}"
+          material="transparent: true;shader: flat; src: ${thumb}" 
           sound="on: click; src: #click-sound"
           event-set__mouseenter="scale: 1.2 1.2 1"
           event-set__mouseleave="scale: 1 1 1"
@@ -54,10 +54,12 @@
         <a-sky id="image-360" radius="10" src="#1" rotation="0 0 0"
             animation__fade="property: components.material.material.color; type: color; from: #FFF; to: #000; dur: 300; startEvents: fade"
             animation__fadeback="property: components.material.material.color; type: color; from: #000; to: #FFF; dur: 300; startEvents: animationcomplete__fade"></a-sky>
+        <!-- <a-entity camera look-controls> -->
         <a-image id="textPlane" src="./images/images.png" position="-2.4 -2 -4"></a-image>
-
+        <!-- </a-entity> -->
         <!-- Image links. -->
         <a-entity id="links" layout="type: line; margin: 1.2" position="-2.4 -1 -4">
+            <!-- <a-entity id="links" layout="type: box; columns: 3; margin: 1.2" position="-2.4 -1 -4"> -->
             <a-entity template="src: #link" data-src="#1" data-thumb="#1-thumb" data-text="#1-thumb"
                 data-rotation="0 20 0"></a-entity>
             <a-entity template="src: #link" data-src="#2" data-thumb="#2-thumb" data-text="#2-thumb"
@@ -71,6 +73,7 @@
             <a-entity template="src: #link" data-src="#6" data-thumb="#6-thumb" data-text="#6-thumb"
                 data-rotation="0 70 0"></a-entity>
         </a-entity>
+
 
         <!-- Camera + cursor. -->
         <a-entity camera look-controls>
