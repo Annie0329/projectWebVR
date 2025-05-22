@@ -3,72 +3,73 @@
 
 <head>
     <meta charset="utf-8">
-    <title>360&deg; Image Gallery</title>
+    <title>test</title>
     <meta name="description" content="360&deg; Image Gallery - A-Frame">
-    <!-- If running this example without a local copy of A-Frame, replace this next line with:
-    <script src="https://aframe.io/releases/<release_number>/aframe.min.js"></script>
-    -->
+    <link rel="shortcut icon" href="./images/VR.svg">
     <script src="https://aframe.io/releases/1.7.0/aframe.min.js"></script>
     <script src="https://unpkg.com/aframe-template-component@3.x.x/dist/aframe-template-component.min.js"></script>
     <script src="https://unpkg.com/aframe-layout-component@5.x.x/dist/aframe-layout-component.min.js"></script>
     <script src="https://unpkg.com/aframe-event-set-component@5.x.x/dist/aframe-event-set-component.min.js"></script>
     <script
         src="https://unpkg.com/aframe-proxy-event-component@2.1.0/dist/aframe-proxy-event-component.min.jss"></script>
-
     <!-- Image link template to be reused. -->
     <script id="link" type="text/html">
-      <a-entity class="link"
-        geometry="primitive: plane; height: 1; width: 1"
-        material="shader: flat; src: ${thumb}"
-        sound="on: click; src: #click-sound"
-        event-set__mouseenter="scale: 1.2 1.2 1"
-        event-set__mouseleave="scale: 1 1 1"
-        event-set__click="_target: #image-360; _delay: 300; material.src: ${src}"
-        proxy-event="event: click; to: #image-360; as: fade"></a-entity>
+        <a-entity class="link"
+          geometry="primitive: plane; height: 1; width: 1"
+          material="shader: flat; src: ${thumb}"
+          sound="on: click; src: #click-sound"
+          event-set__mouseenter="scale: 1.2 1.2 1"
+          event-set__mouseleave="scale: 1 1 1"
+          data-src="${src}"
+          data-rotation="${rotation}"
+          data-text="${text}">
+        </a-entity>
     </script>
+
 </head>
 
 <body>
     <a-scene>
-        <a-text font="kelsonsans" value="test" width="6" position="-2.5 0.25 -1.5" rotation="0 15 0"></a-text>
-        <a-text font="kelsonsans" value="test2" width="6" position="0 0.25 -1.5" rotation="0 15 0"></a-text>
-        <a-assets>
 
-            <img id="city" crossorigin="anonymous"
-                src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/city.jpg">
-            <img id="city-thumb" crossorigin="anonymous"
-                src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/thumb-city.jpg">
-            <img id="cubes-thumb" crossorigin="anonymous"
-                src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/thumb-cubes.jpg">
-            <img id="sechelt-thumb" crossorigin="anonymous"
-                src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/thumb-sechelt.jpg">
+        <a-assets>
+            <img id="1" crossorigin="anonymous" src="./images/360photos/1外部_正門.jpg">
+            <img id="2" crossorigin="anonymous" src="./images/360photos/2外部_左側近拍斜.jpg">
+            <img id="3" crossorigin="anonymous" src="./images/360photos/3外部_背面2.jpg">
+            <img id="4" crossorigin="anonymous" src="./images/360photos/4內部_右側走道.jpg">
+            <img id="5" crossorigin="anonymous" src="./images/360photos/5內部_右側長廊.jpg">
+            <img id="6" crossorigin="anonymous" src="./images/360photos/6內部_背面.jpg">
+
+            <img id="1-thumb" crossorigin="anonymous" src="./images/buttons/1.png">
+            <img id="2-thumb" crossorigin="anonymous" src="./images/buttons/2.png">
+            <img id="3-thumb" crossorigin="anonymous" src="./images/buttons/3.png">
+            <img id="4-thumb" crossorigin="anonymous" src="./images/buttons/4.png">
+            <img id="5-thumb" crossorigin="anonymous" src="./images/buttons/5.png">
+            <img id="6-thumb" crossorigin="anonymous" src="./images/buttons/6.png">
+
             <audio id="click-sound" crossorigin="anonymous"
                 src="https://cdn.aframe.io/360-image-gallery-boilerplate/audio/click.ogg"></audio>
-            <img id="cubes" crossorigin="anonymous"
-                src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/cubes.jpg">
-            <img id="sechelt" crossorigin="anonymous"
-                src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/sechelt.jpg">
-            <img id="school" crossorigin="anonymous"
-                src="https://cdn.glitch.global/9c94800e-3095-4ee5-b526-f7afad0dec0d/54417845134_778aa5f6da_b.jpg?v=1747644974118">
-            <img id="school-thumb" crossorigin="anonymous"
-                src="https://i0.wp.com/www.firefallphotography.com/wp-content/uploads/2018/10/2018-Russia-09-06-0416.jpg?resize=960,721&ssl=1">
-            <img id="test-thumb" crossorigin="anonymous"
-                src="https://upload.wikimedia.org/wikipedia/commons/8/8e/Staples_High_School%2C_Westport%2C_CT.jpg">
-            <img id="test" crossorigin="anonymous" src="./images/test.jpg">
         </a-assets>
 
         <!-- 360-degree image. -->
-        <a-sky id="image-360" radius="10" src="#city"
+        <a-sky id="image-360" radius="10" src="#1" rotation="0 0 0"
             animation__fade="property: components.material.material.color; type: color; from: #FFF; to: #000; dur: 300; startEvents: fade"
             animation__fadeback="property: components.material.material.color; type: color; from: #000; to: #FFF; dur: 300; startEvents: animationcomplete__fade"></a-sky>
+        <a-image id="textPlane" src="./images/images.png" position="-2.4 -2 -4"></a-image>
 
         <!-- Image links. -->
         <a-entity id="links" layout="type: line; margin: 1.2" position="-2.4 -1 -4">
-            <a-entity template="src: #link" data-src="#city" data-thumb="#city-thumb"></a-entity>
-            <a-entity template="src: #link" data-src="#cubes" data-thumb="#cubes-thumb"></a-entity>
-            <a-entity template="src: #link" data-src="#sechelt" data-thumb="#sechelt-thumb"></a-entity>
-            <a-entity template="src: #link" data-src="#school" data-thumb="#school-thumb"></a-entity>
-            <a-entity template="src: #link" data-src="#test" data-thumb="#test-thumb"></a-entity>
+            <a-entity template="src: #link" data-src="#1" data-thumb="#1-thumb" data-text="#1-thumb"
+                data-rotation="0 20 0"></a-entity>
+            <a-entity template="src: #link" data-src="#2" data-thumb="#2-thumb" data-text="#2-thumb"
+                data-rotation="0 30 0"></a-entity>
+            <a-entity template="src: #link" data-src="#3" data-thumb="#3-thumb" data-text="#3-thumb"
+                data-rotation="0 40 0"></a-entity>
+            <a-entity template="src: #link" data-src="#4" data-thumb="#4-thumb" data-text="#4-thumb"
+                data-rotation="0 50 0"></a-entity>
+            <a-entity template="src: #link" data-src="#5" data-thumb="#5-thumb" data-text="#5-thumb"
+                data-rotation="0 60 0"></a-entity>
+            <a-entity template="src: #link" data-src="#6" data-thumb="#6-thumb" data-text="#6-thumb"
+                data-rotation="0 70 0"></a-entity>
         </a-entity>
 
         <!-- Camera + cursor. -->
@@ -80,6 +81,7 @@
                 event-set__mouseleave="_event: mouseleave; color: black" raycaster="objects: .link"></a-cursor>
         </a-entity>
     </a-scene>
+    <script src="./js/script.js"></script>
 </body>
 
 </html>
