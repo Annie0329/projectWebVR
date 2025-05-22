@@ -30,7 +30,6 @@
 
 <body>
     <a-scene>
-
         <a-assets>
             <img id="1" crossorigin="anonymous" src="./images/360photos/1外部_正門.jpg">
             <img id="2" crossorigin="anonymous" src="./images/360photos/2外部_左側近拍斜.jpg">
@@ -51,9 +50,8 @@
         </a-assets>
 
         <!-- 360-degree image. -->
-        <a-sky id="image-360" radius="10" src="#1" rotation="0 0 0"
-            animation__fade="property: components.material.material.color; type: color; from: #FFF; to: #000; dur: 300; startEvents: fade"
-            animation__fadeback="property: components.material.material.color; type: color; from: #000; to: #FFF; dur: 300; startEvents: animationcomplete__fade"></a-sky>
+        <a-sky id="image-360" radius="10" src="#1" rotation="0 0 0">
+        </a-sky>
         <!-- <a-entity camera look-controls> -->
         <a-image id="textPlane" src="./images/images.png" position="-2.4 -2 -4"></a-image>
         <!-- </a-entity> -->
@@ -77,6 +75,13 @@
 
         <!-- Camera + cursor. -->
         <a-entity camera look-controls>
+            <a-entity id="fade-wrapper" position="0 0 -1">
+                <a-plane id="fade-plane" color="#000" width="100" height="100" position="0 0 -1"
+                    material="shader: flat; opacity: 0" scale="1 1 1"
+                    animation__fadein="property: material.opacity; from: 0; to: 1; dur: 500; startEvents: fadein"
+                    animation__fadeout="property: material.opacity; from: 1; to: 0; dur: 500; startEvents: fadeout">
+                </a-plane>
+            </a-entity>
             <a-cursor id="cursor"
                 animation__click="property: scale; startEvents: click; from: 0.1 0.1 0.1; to: 1 1 1; dur: 150"
                 animation__fusing="property: fusing; startEvents: fusing; from: 1 1 1; to: 0.1 0.1 0.1; dur: 1500"
