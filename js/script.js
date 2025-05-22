@@ -10,10 +10,10 @@ AFRAME.registerComponent('set-sky-on-click', {
             const textPic = this.el.getAttribute('data-text');
 
             // 1. Trigger fade-in (black overlay becomes opaque)
-            fadePlane.emit('fadein')
+            // fadePlane.emit('fadein')
 
-            fadePlane.addEventListener('animationcomplete__fadein', function handler() {
-                fadePlane.removeEventListener('animationcomplete__fadein', handler);
+            // fadePlane.addEventListener('animationcomplete__fadein', function handler() {
+                // fadePlane.removeEventListener('animationcomplete__fadein', handler);
 
                 // Step 3: Update sky AFTER fade to black
                 sky.setAttribute('material', 'src', src);
@@ -21,10 +21,10 @@ AFRAME.registerComponent('set-sky-on-click', {
                 textPlane.setAttribute('src', textPic);
 
                 // Step 4: Fade back to clear
-            });
-            setTimeout(function () {
-                fadePlane.emit('fadeout')
-            }, 600)
+            // });
+            // setTimeout(function () {
+                // fadePlane.emit('fadeout')
+            // }, 600)
 
         });
     }
