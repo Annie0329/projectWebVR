@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>test</title>
+    <title>test0522</title>
     <meta name="description" content="360&deg; Image Gallery - A-Frame">
     <link rel="shortcut icon" href="#">
     <script src="https://aframe.io/releases/1.7.0/aframe.min.js"></script>
@@ -30,6 +30,7 @@
 
 <body>
     <a-scene>
+
         <a-assets>
             <img id="1" crossorigin="anonymous" src="./images/360photos/1外部_正門.jpg">
             <img id="2" crossorigin="anonymous" src="./images/360photos/2外部_左側近拍斜.jpg">
@@ -50,8 +51,9 @@
         </a-assets>
 
         <!-- 360-degree image. -->
-        <a-sky id="image-360" radius="10" src="#1" rotation="0 0 0">
-        </a-sky>
+        <a-sky id="image-360" radius="10" src="#1" rotation="0 0 0"
+            animation__fade="property: components.material.material.color; type: color; from: #FFF; to: #000; dur: 300; startEvents: fade"
+            animation__fadeback="property: components.material.material.color; type: color; from: #000; to: #FFF; dur: 300; startEvents: animationcomplete__fade"></a-sky>
         <!-- <a-entity camera look-controls> -->
         <a-image id="textPlane" src="./images/images.png" position="-2.4 -2 -4"></a-image>
         <!-- </a-entity> -->
@@ -71,6 +73,7 @@
             <a-entity template="src: #link" data-src="#6" data-thumb="#6-thumb" data-text="#6-thumb"
                 data-rotation="0 70 0"></a-entity>
         </a-entity>
+
 
         <!-- Camera + cursor. -->
         <a-entity camera look-controls>
