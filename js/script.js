@@ -13,8 +13,9 @@ AFRAME.registerComponent('set-sky-on-click', {
                 textPlane.setAttribute('material', 'src', textPic);
                 sky.setAttribute('material', 'src', src);
                 sky.setAttribute('rotation', rotation);
+                setTimeout(function () { fadePlane.emit('fadeback') }, 200)
             }, 600)
-            setTimeout(function () {fadePlane.emit('fadeback')}, 700)
+
         });
     }
 });
