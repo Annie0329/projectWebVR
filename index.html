@@ -3,9 +3,9 @@
 
 <head>
     <meta charset="utf-8">
-    <title>test0522</title>
+    <title>紀州庵 VR 體驗</title>
     <meta name="description" content="360&deg; Image Gallery - A-Frame">
-    <link rel="shortcut icon" href="#">
+    <link rel="shortcut icon" href="./images/tab logo.svg">
     <script src="https://aframe.io/releases/1.7.0/aframe.min.js"></script>
     <script src="https://unpkg.com/aframe-template-component@3.x.x/dist/aframe-template-component.min.js"></script>
     <script src="https://unpkg.com/aframe-layout-component@5.x.x/dist/aframe-layout-component.min.js"></script>
@@ -46,42 +46,51 @@
             <img id="5-thumb" crossorigin="anonymous" src="./images/buttons/5.png">
             <img id="6-thumb" crossorigin="anonymous" src="./images/buttons/6.png">
 
+            <img id="1-textPic" crossorigin="anonymous" src="./images/textPic/景1.png">
+            <img id="2-textPic" crossorigin="anonymous" src="./images/textPic/景2.png">
+            <img id="3-textPic" crossorigin="anonymous" src="./images/textPic/景3.png">
+            <img id="4-textPic" crossorigin="anonymous" src="./images/textPic/景4.png">
+            <img id="5-textPic" crossorigin="anonymous" src="./images/textPic/景5.png">
+            <img id="6-textPic" crossorigin="anonymous" src="./images/textPic/景6.png">
+
             <audio id="click-sound" crossorigin="anonymous"
                 src="https://cdn.aframe.io/360-image-gallery-boilerplate/audio/click.ogg"></audio>
         </a-assets>
 
         <!-- 360-degree image. -->
-        <a-sky id="image-360" radius="10" src="#1" rotation="0 0 0"
-            animation__fade="property: components.material.material.color; type: color; from: #FFF; to: #000; dur: 300; startEvents: fade"
-            animation__fadeback="property: components.material.material.color; type: color; from: #000; to: #FFF; dur: 300; startEvents: animationcomplete__fade"></a-sky>
-        <!-- <a-entity camera look-controls> -->
-        <a-image id="textPlane" src="./images/images.png" position="-2.4 -2 -4"></a-image>
-        <!-- </a-entity> -->
+        <a-sky id="image-360" radius="10" src="#1" rotation="0 -120 0"></a-sky>
+
         <!-- Image links. -->
         <a-entity id="links" layout="type: line; margin: 1.2" position="-2.4 -1 -4">
             <!-- <a-entity id="links" layout="type: box; columns: 3; margin: 1.2" position="-2.4 -1 -4"> -->
-            <a-entity template="src: #link" data-src="#1" data-thumb="#1-thumb" data-text="#1-thumb"
-                data-rotation="0 20 0"></a-entity>
-            <a-entity template="src: #link" data-src="#2" data-thumb="#2-thumb" data-text="#2-thumb"
-                data-rotation="0 30 0"></a-entity>
-            <a-entity template="src: #link" data-src="#3" data-thumb="#3-thumb" data-text="#3-thumb"
-                data-rotation="0 40 0"></a-entity>
-            <a-entity template="src: #link" data-src="#4" data-thumb="#4-thumb" data-text="#4-thumb"
-                data-rotation="0 50 0"></a-entity>
-            <a-entity template="src: #link" data-src="#5" data-thumb="#5-thumb" data-text="#5-thumb"
-                data-rotation="0 60 0"></a-entity>
-            <a-entity template="src: #link" data-src="#6" data-thumb="#6-thumb" data-text="#6-thumb"
-                data-rotation="0 70 0"></a-entity>
+            <a-entity template="src: #link" data-src="#1" data-thumb="#1-thumb" data-text="#1-textPic"
+                data-rotation="0 -100 0"></a-entity>
+            <a-entity template="src: #link" data-src="#2" data-thumb="#2-thumb" data-text="#2-textPic"
+                data-rotation="0 -50 0"></a-entity>
+            <a-entity template="src: #link" data-src="#3" data-thumb="#3-thumb" data-text="#3-textPic"
+                data-rotation="0 -80 0"></a-entity>
+            <a-entity template="src: #link" data-src="#4" data-thumb="#4-thumb" data-text="#4-textPic"
+                data-rotation="0 -150 0"></a-entity>
+            <a-entity template="src: #link" data-src="#5" data-thumb="#5-thumb" data-text="#5-textPic"
+                data-rotation="0 -20 0"></a-entity>
+            <a-entity template="src: #link" data-src="#6" data-thumb="#6-thumb" data-text="#6-textPic"
+                data-rotation="0 -50 0"></a-entity>
         </a-entity>
 
 
         <!-- Camera + cursor. -->
         <a-entity camera look-controls>
+            <a-entity id="textPlane" geometry="primitive: plane; height:0.168 ; width: 0.3"
+                material=" transparent: true;src: #1-textPic" position="-0.22 -0.08 -0.2"></a-entity>
             <a-cursor id="cursor"
                 animation__click="property: scale; startEvents: click; from: 0.1 0.1 0.1; to: 1 1 1; dur: 150"
                 animation__fusing="property: fusing; startEvents: fusing; from: 1 1 1; to: 0.1 0.1 0.1; dur: 1500"
                 event-set__mouseenter="_event: mouseenter; color: springgreen"
                 event-set__mouseleave="_event: mouseleave; color: black" raycaster="objects: .link"></a-cursor>
+
+            <a-plane id="fadePlane" color="#000" opacity="0" shader="flat" width="1" height="1" position="0 0 -0.1"
+                animation__fade="property: components.material.material.opacity; type: opacity; from: 0; to: 1; dur: 500; startEvents: fade"
+                animation__fadeback="property: components.material.material.opacity; type: opacity; from: 1; to: 0; dur: 500; startEvents: fadeback"></a-plane>
         </a-entity>
     </a-scene>
     <script src="./js/script.js"></script>

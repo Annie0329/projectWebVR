@@ -2,15 +2,19 @@ AFRAME.registerComponent('set-sky-on-click', {
     init: function () {
         const sky = document.querySelector('#image-360');
         const textPlane = document.querySelector('#textPlane');
+        const fadePlane = document.querySelector('#fadePlane');
         this.el.addEventListener('click', () => {
+            fadePlane.emit('fade')
             const src = this.el.getAttribute('data-src');
-            const rotation = this.el.getAttribute('data-rotation') || '0 0 0';
+            const rotation = this.el.getAttribute('data-rotation');
             const textPic = this.el.getAttribute('data-text');
-            // Set image and rotation on sky
-            sky.setAttribute('material', 'src', src);
-            sky.setAttribute('rotation', rotation);
-            textPlane.setAttribute('src', textPic);
-            console.log(src)
+
+            setTimeout(function () {
+                textPlane.setAttribute('material', 'src', textPic);
+                sky.setAttribute('material', 'src', src);
+                sky.setAttribute('rotation', rotation);
+            }, 600)
+            setTimeout(function () {fadePlane.emit('fadeback')}, 700)
         });
     }
 });
